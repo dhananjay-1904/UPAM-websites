@@ -1,0 +1,428 @@
+/* ============================================================
+   UPAM — Uttar Pradesh Awadh Manch WA
+   Design tokens: dusk indigo + marigold + rust, arch motif
+   drawn from Lucknow's Rumi Darwaza, chikankari thread texture
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #1B2A41;
+  --ink-soft: #33455f;
+  --paper: #FBF3E7;
+  --thread: #F2E9DA;
+  --marigold: #E8A23D;
+  --rust: #B84B2A;
+  --maroon: #6E1F2B;
+  --line: rgba(27, 42, 65, 0.14);
+
+  --display: 'Fraunces', serif;
+  --body: 'Work Sans', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+a { color: inherit; }
+
+img, svg { max-width: 100%; display: block; }
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Chikankari texture ---------- */
+.thread-texture {
+  background-image: radial-gradient(circle, rgba(27,42,65,0.07) 1px, transparent 1.4px);
+  background-size: 18px 18px;
+}
+
+/* ---------- Header / Nav ---------- */
+header.site {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  flex: none;
+}
+
+.brand-text {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.brand-text small {
+  display: block;
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-top: 2px;
+}
+
+nav.links {
+  display: flex;
+  gap: 28px;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+nav.links a {
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+}
+
+nav.links a:hover,
+nav.links a[aria-current="page"] {
+  border-bottom-color: var(--rust);
+}
+
+nav.links a:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
+}
+
+.nav-toggle { display: none; }
+
+@media (max-width: 720px) {
+  nav.links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    gap: 0;
+    display: none;
+  }
+  nav.links.open { display: flex; }
+  nav.links a { padding: 14px 24px; border-bottom: 1px solid var(--line); }
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    font-family: var(--display);
+    font-size: 1.1rem;
+  }
+}
+
+/* ---------- Arch motif (Rumi Darwaza silhouette) ---------- */
+.arch-row {
+  display: flex;
+  line-height: 0;
+  color: var(--ink);
+}
+.arch-row.on-ink { color: var(--paper); }
+.arch-row svg { flex: none; }
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--ink);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 88px 24px 64px;
+  display: flex;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-inner > div:first-child { flex: 1.1 1 0; min-width: 280px; }
+.hero-inner .gate-wrap { flex: 0.9 1 0; min-width: 220px; max-width: 340px; }
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--marigold);
+  font-weight: 600;
+  margin: 0 0 18px;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--marigold);
+  font-weight: 500;
+}
+
+.hero p.lede {
+  font-size: 1.08rem;
+  color: rgba(251, 243, 231, 0.82);
+  max-width: 46ch;
+  margin: 0 0 32px;
+}
+
+.cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 13px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary { background: var(--rust); color: var(--paper); }
+.btn-primary:hover { background: #9c3f22; }
+
+.btn-ghost { border-color: rgba(251,243,231,0.4); color: var(--paper); background: transparent; }
+.btn-ghost:hover { border-color: var(--marigold); color: var(--marigold); }
+
+.btn-ghost-ink { border-color: var(--line); color: var(--ink); background: transparent; }
+.btn-ghost-ink:hover { border-color: var(--rust); color: var(--rust); }
+
+/* Gate illustration in hero */
+.gate-wrap { position: relative; }
+.gate-wrap svg { width: 100%; height: auto; }
+
+/* ---------- Section scaffolding ---------- */
+section { padding: 72px 0; }
+
+.section-head { max-width: 60ch; margin: 0 0 44px; }
+
+.section-head .eyebrow { color: var(--rust); }
+
+.section-head h2 {
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.section-head p { color: var(--ink-soft); margin: 0; }
+
+/* ---------- Pillars / cards ---------- */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.pillar {
+  background: var(--paper);
+  padding: 32px 28px;
+}
+
+.pillar .num {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--rust);
+  font-size: 1.6rem;
+  margin: 0 0 14px;
+}
+
+.pillar h3 {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.pillar p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+@media (max-width: 800px) {
+  .pillars { grid-template-columns: 1fr; }
+  .hero-inner { flex-direction: column; align-items: flex-start; padding-top: 56px; }
+  .hero-inner .gate-wrap { max-width: 260px; }
+}
+
+/* ---------- Event cards ---------- */
+.event-list { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+
+.event-card {
+  background: var(--paper);
+  padding: 26px 28px;
+  display: grid;
+  grid-template-columns: 96px 1fr auto;
+  gap: 22px;
+  align-items: center;
+}
+
+.event-date {
+  font-family: var(--display);
+  text-align: center;
+  border-right: 1px solid var(--line);
+  padding-right: 22px;
+}
+
+.event-date .day { font-size: 1.8rem; font-weight: 600; line-height: 1; display: block; }
+.event-date .mon { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); }
+
+.event-card h3 { font-family: var(--display); font-size: 1.15rem; margin: 0 0 6px; font-weight: 600; }
+.event-card p { margin: 0; color: var(--ink-soft); font-size: 0.9rem; }
+
+@media (max-width: 640px) {
+  .event-card { grid-template-columns: 64px 1fr; }
+  .event-card .btn { grid-column: 1 / -1; justify-self: start; margin-top: 8px; }
+}
+
+/* ---------- Placeholder notice (dev aid, remove when real content is in) ---------- */
+.placeholder-note {
+  background: var(--thread);
+  border: 1px dashed var(--rust);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 0.85rem;
+  color: var(--maroon);
+  margin-bottom: 28px;
+}
+
+/* ---------- Footer ---------- */
+footer.site {
+  background: var(--ink);
+  color: rgba(251,243,231,0.72);
+}
+
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 24px 36px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 32px;
+}
+
+.footer-inner h4 {
+  font-family: var(--display);
+  color: var(--paper);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 14px;
+}
+
+.footer-inner p, .footer-inner a { font-size: 0.88rem; }
+
+.footer-inner ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.footer-inner a { text-decoration: none; }
+.footer-inner a:hover { color: var(--marigold); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(251,243,231,0.14);
+  text-align: center;
+  font-size: 0.78rem;
+  padding: 18px 24px 28px;
+  color: rgba(251,243,231,0.5);
+}
+
+@media (max-width: 720px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+/* ---------- Form ---------- */
+form.contact-form { display: grid; gap: 18px; max-width: 520px; }
+
+.field { display: grid; gap: 6px; }
+
+.field label { font-size: 0.85rem; font-weight: 600; }
+
+.field input, .field textarea {
+  font-family: var(--body);
+  font-size: 0.95rem;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--thread);
+  color: var(--ink);
+}
+
+.field input:focus, .field textarea:focus {
+  outline: 2px solid var(--rust);
+  outline-offset: 1px;
+}
+
+.field textarea { resize: vertical; min-height: 120px; }
+
+/* ---------- Simple content page styling (about) ---------- */
+.prose { max-width: 68ch; }
+.prose h2 { font-family: var(--display); font-size: 1.5rem; margin: 40px 0 12px; }
+.prose p { color: var(--ink-soft); }
+
+.committee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.committee-card { text-align: left; }
+.committee-card .role {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rust);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.committee-card .name { font-family: var(--display); font-size: 1.05rem; font-weight: 600; }

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — UPAM</title>
+<meta name="description" content="About Uttar Pradesh Awadh Manch WA — our mission, our committee, our story.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-row">
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 2C11 2 4 9 4 18v20h6V22c0-5.5 4.5-10 10-10s10 4.5 10 10v16h6V18C36 9 29 2 20 2z" fill="#B84B2A"/>
+        <circle cx="20" cy="14" r="3" fill="#E8A23D"/>
+      </svg>
+      <span class="brand-text">UPAM<small>Uttar Pradesh Awadh Manch WA</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" id="navToggle">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="events.html">Events</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section style="padding-top:56px;">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">About us</p>
+      <h2>Our story</h2>
+    </div>
+
+    <div class="placeholder-note">
+      Placeholder copy below — swap in UPAM's real founding story, mission statement and committee names before publishing.
+    </div>
+
+    <div class="prose">
+      <p>Uttar Pradesh Awadh Manch WA (UPAM) was formed by families from Uttar Pradesh and the Awadh region who wanted to keep our traditions, language and sense of community alive here in Western Australia. What began as a handful of households sharing festivals together has grown into a wider community network across Perth.</p>
+
+      <h2>Our mission</h2>
+      <p>To create a welcoming home for Awadh and UP families in WA — organising festivals, cultural events and community support, and helping new arrivals settle in and find their people.</p>
+
+      <h2>Committee</h2>
+      <div class="committee-grid">
+        <div class="committee-card">
+          <p class="role">Secretary</p>
+          <p class="name">Dhananjay Shukla</p>
+        </div>
+        <div class="committee-card">
+          <p class="role">President</p>
+          <p class="name">Name here</p>
+        </div>
+        <div class="committee-card">
+          <p class="role">Treasurer</p>
+          <p class="name">Name here</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="footer-inner">
+    <div>
+      <h4>UPAM</h4>
+      <p>Uttar Pradesh Awadh Manch WA is a not-for-profit community organisation incorporated in Western Australia.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a href="mailto:secretary@upamwa.org.au">secretary@upamwa.org.au</a></li>
+        <li>Perth, Western Australia</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© <span id="year"></span> Uttar Pradesh Awadh Manch WA. All rights reserved.</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+</script>
+
+</body>
+</html>
