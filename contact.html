@@ -35,10 +35,10 @@
     </div>
 
     <div class="placeholder-note">
-      This form currently has no backend — see the note below the form for free ways to make it actually send email.
+      Submissions save straight to your Supabase project. Before this works, replace the SUPABASE_URL and SUPABASE_ANON_KEY placeholders near the bottom of this file with your project's real values (Supabase dashboard → Settings → API).
     </div>
 
-    <form class="contact-form" onsubmit="return false;">
+    <form class="contact-form" id="contactForm">
       <div class="field">
         <label for="name">Name</label>
         <input id="name" name="name" type="text" required>
@@ -51,11 +51,12 @@
         <label for="message">Message</label>
         <textarea id="message" name="message" required></textarea>
       </div>
-      <button class="btn btn-primary" type="submit" style="justify-self:start;">Send message</button>
+      <button class="btn btn-primary" type="submit" id="submitBtn" style="justify-self:start;">Send message</button>
+      <p id="formStatus" role="status" style="margin:0; font-size:0.9rem;"></p>
     </form>
 
     <p style="margin-top:28px; font-size:0.88rem; color:var(--ink-soft); max-width:60ch;">
-      To make this form actually deliver email without a paid backend, connect it to a free service like Cloudflare Pages Forms substitute (e.g. Web3Forms or Formspree free tier) — both offer a generous free monthly quota and just need a small script change. Or, for now, mail us directly at <a href="mailto:secretary@upamwa.org.au" style="color:var(--rust);">secretary@upamwa.org.au</a>.
+      Prefer email directly? Reach us at <a href="mailto:secretary@upamwa.org.au" style="color:var(--rust);">secretary@upamwa.org.au</a>.
     </p>
   </div>
 </section>
@@ -84,6 +85,49 @@
   </div>
   <div class="footer-bottom">© <span id="year"></span> Uttar Pradesh Awadh Manch WA. All rights reserved.</div>
 </footer>
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+  // TODO: replace these two with your real values
+  // Supabase dashboard → your project → Settings → API
+  const SUPABASE_URL = 'https://YOUR-PROJECT-REF.supabase.co';
+  const SUPABASE_ANON_KEY = 'YOUR-ANON-PUBLIC-KEY';
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  const btn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.textContent = '';
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const { error } = await supabase
+      .from('contact_submissions')
+      .insert([{ name, email, message }]);
+
+    if (error) {
+      console.error(error);
+      status.textContent = "Something went wrong — please email us directly instead.";
+      status.style.color = '#B84B2A';
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    } else {
+      form.reset();
+      status.textContent = "Thanks — we've received your message and will be in touch soon.";
+      status.style.color = '#1B2A41';
+      btn.textContent = 'Sent';
+    }
+  });
+</script>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
